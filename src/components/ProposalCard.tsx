@@ -30,15 +30,17 @@ export function ProposalCard({ id, onRefresh }: Props) {
     await refetch();
     await refetchVoted();
     onRefresh();
-    toast.success(yes ? "✅ YES vote cast privately!" : "❌ NO vote cast privately!");
+    toast.success(yes ? "✅ YES vote casted privately!" : "❌ NO vote casted privately!");
   }
 
   async function handleTally() {
     await tallyAndReveal(id);
+    // Wait 2 seconds for the chain to update
+    await new Promise(resolve => setTimeout(resolve, 5000));
     await refetch();
     onRefresh();
   }
-
+  
   const statusColor = proposal.tallied
     ? "text-emerald-400"
     : isActive

@@ -47,7 +47,7 @@ export function useCastVote() {
         args: [proposalId, encryptedValue as `0x${string}`, inputProof],
       });
 
-      toast.success(voteYes ? "✅ YES vote cast privately!" : "❌ NO vote cast privately!", { id: toastId });
+      toast.success(voteYes ? "✅ YES vote casted privately!" : "❌ NO vote casted privately!", { id: toastId });
     } catch (e: any) {
       toast.error(e?.shortMessage || "Vote failed", { id: toastId });
       throw e;

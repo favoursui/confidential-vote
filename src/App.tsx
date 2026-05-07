@@ -9,13 +9,12 @@ export default function App() {
   const { isConnected } = useAccount();
   const { data: ids, refetch } = useProposalIds();
 
-  useEffect(() => {
+ useEffect(() => {
   const interval = setInterval(() => {
     refetch();
-  }, 10000);
+  }, 5000);
   return () => clearInterval(interval);
 }, [refetch]);
-
   const [tick, setTick] = useState(0);
 
   function refresh() {
@@ -97,7 +96,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="footer">
-        Built with Zama Protocol · FHE on Ethereum Sepolia
+        Built with Zama Protocol · FHE on Ethereum Sepolia 
       </footer>
     </div>
   );
