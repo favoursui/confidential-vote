@@ -2,9 +2,9 @@
 
 **Fully private on-chain governance using Fully Homomorphic Encryption (FHE) on the Zama Protocol.**
 
-ConfidentialVote lets anyone create proposals and cast votes that are **completely encrypted on-chain**. No one — not validators, not the contract, not other voters — can see how you voted. Only the final aggregated tally is revealed after the voting period ends.
+ConfidentialVote lets anyone create proposals and cast votes that are **completely encrypted on-chain**. No one, not validators, not the contract, not other voters, can see how you voted. Only the final aggregated tally is revealed after the voting period ends.
 
-> Built for the **Zama Developer Program Mainnet Season 2 — Builder Track**
+> Built for the **Zama Developer Program Mainnet Season 2 - Builder Track**
 
 ---
 
@@ -12,11 +12,11 @@ ConfidentialVote lets anyone create proposals and cast votes that are **complete
 
 Traditional on-chain voting stores votes as plaintext. Anyone watching Etherscan or the mempool can see exactly how every wallet voted in real time. This creates:
 
-- **Voter coercion** — people can be pressured based on their visible votes
-- **Bandwagon effects** — seeing the current tally influences how others vote
-- **Vote manipulation** — bad actors can game outcomes before polls close
+- **Voter coercion** - people can be pressured based on their visible votes
+- **Bandwagon effects** - seeing the current tally influences how others vote
+- **Vote manipulation** - bad actors can game outcomes before polls close
 
-ConfidentialVote solves this with **FHE (Fully Homomorphic Encryption)** — the only cryptographic technique that allows computation directly on encrypted data without ever decrypting it.
+ConfidentialVote solves this with **FHE (Fully Homomorphic Encryption)**, the only cryptographic technique that allows computation directly on encrypted data without ever decrypting it.
 
 ---
 
@@ -38,12 +38,12 @@ Voter                   Contract (FHEVM)           Zama Gateway
   │<── getProposal() ─────────│  finalYes=X, finalNo=Y   │
 ```
 
-1. **Create a proposal** — set a title, description and voting duration
-2. **Cast an encrypted vote** — your YES/NO is encrypted client-side using `@fhevm/sdk` before it leaves your browser. The contract receives a ciphertext, never plaintext
-3. **Votes accumulate encrypted** — the contract uses `FHE.select` and `FHE.add` to tally votes over ciphertexts with zero decryption
-4. **Voting ends** — the proposal creator calls `tallyVotes()`, granting decrypt permission on-chain
-5. **Decrypt via Zama Gateway** — an EIP-712 permit is signed, the Gateway decrypts only the aggregated totals
-6. **Results stored on-chain** — plaintext totals are written back for public verification. Individual votes remain permanently private
+1. **Create a proposal** - set a title, description and voting duration
+2. **Cast an encrypted vote** - your YES/NO is encrypted client-side using `@fhevm/sdk` before it leaves your browser. The contract receives a ciphertext, never plaintext
+3. **Votes accumulate encrypted** - the contract uses `FHE.select` and `FHE.add` to tally votes over ciphertexts with zero decryption
+4. **Voting ends** - the proposal creator calls `tallyVotes()`, granting decrypt permission on-chain
+5. **Decrypt via Zama Gateway** - an EIP-712 permit is signed, the Gateway decrypts only the aggregated totals
+6. **Results stored on-chain** - plaintext totals are written back for public verification. Individual votes remain permanently private
 
 ---
 
@@ -55,7 +55,7 @@ Voter                   Contract (FHEVM)           Zama Gateway
 | `ebool` | Encrypted boolean for the raw vote |
 | `externalEbool` | Accepts encrypted input from the user with a ZK proof |
 | `FHE.fromExternal()` | Converts user's encrypted input + proof into a usable ciphertext |
-| `FHE.select()` | Branchless conditional — routes vote to yes or no counter without decryption |
+| `FHE.select()` | Branchless conditional - routes vote to yes or no counter without decryption |
 | `FHE.add()` | Adds encrypted values without seeing them |
 | `FHE.allowThis()` | Grants the contract permission to use updated ciphertexts |
 | `FHE.allow()` | Grants a specific address permission to decrypt a handle |
@@ -145,9 +145,9 @@ Open [http://localhost:5173](http://localhost:5173)
 ## 🗳️ Using the App
 
 1. **Connect MetaMask** (must be on Sepolia testnet)
-2. **Create a Proposal** — set title, description, and voting duration
-3. **Cast a Vote** — click YES or NO. Your vote is encrypted in the browser before being sent on-chain
-4. **Reveal Results** — after voting ends, the proposal creator clicks "Reveal Results". MetaMask will ask for a signature to authorize decryption via the Zama Gateway. Results appear within seconds
+2. **Create a Proposal** - set title, description, and voting duration
+3. **Cast a Vote** - click YES or NO. Your vote is encrypted in the browser before being sent on-chain
+4. **Reveal Results** - after voting ends, the proposal creator clicks "Reveal Results". MetaMask will ask for a signature to authorize decryption via the Zama Gateway. Results appear within seconds
 
 ---
 
